@@ -8,7 +8,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene as! UIWindowScene)
-        window?.rootViewController = InitialViewController()
+        window?.rootViewController = UINavigationController(rootViewController: InitialViewController())
         window?.makeKeyAndVisible()
     }
 
