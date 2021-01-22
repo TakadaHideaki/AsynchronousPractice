@@ -30,6 +30,15 @@
 		8C7345A625BA916D003BFB2A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7345A525BA916D003BFB2A /* R.generated.swift */; };
 		8C7345A725BA916D003BFB2A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7345A525BA916D003BFB2A /* R.generated.swift */; };
 		8C7345A825BA916D003BFB2A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7345A525BA916D003BFB2A /* R.generated.swift */; };
+		8C7345CB25BA9D4B003BFB2A /* TimeLineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7345CA25BA9D4B003BFB2A /* TimeLineViewModel.swift */; };
+		8C7345CC25BA9D4B003BFB2A /* TimeLineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7345CA25BA9D4B003BFB2A /* TimeLineViewModel.swift */; };
+		8C7345CD25BA9D4B003BFB2A /* TimeLineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7345CA25BA9D4B003BFB2A /* TimeLineViewModel.swift */; };
+		8C7345D525BA9D64003BFB2A /* TimeLineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7345D425BA9D64003BFB2A /* TimeLineModel.swift */; };
+		8C7345D625BA9D64003BFB2A /* TimeLineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7345D425BA9D64003BFB2A /* TimeLineModel.swift */; };
+		8C7345D725BA9D64003BFB2A /* TimeLineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7345D425BA9D64003BFB2A /* TimeLineModel.swift */; };
+		8C7345DF25BACEE5003BFB2A /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7345DE25BACEE5003BFB2A /* CustomTableViewCell.swift */; };
+		8C7345E025BACEE5003BFB2A /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7345DE25BACEE5003BFB2A /* CustomTableViewCell.swift */; };
+		8C7345E125BACEE5003BFB2A /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7345DE25BACEE5003BFB2A /* CustomTableViewCell.swift */; };
 		F20D580C71E4530A14D92773 /* Pods_Asynchronous_Practice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F45F6837CC440DE74817E5E9 /* Pods_Asynchronous_Practice.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +81,9 @@
 		8C73458425BA84B9003BFB2A /* InitialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewModel.swift; sourceTree = "<group>"; };
 		8C73458B25BA8A54003BFB2A /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
 		8C7345A525BA916D003BFB2A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		8C7345CA25BA9D4B003BFB2A /* TimeLineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewModel.swift; sourceTree = "<group>"; };
+		8C7345D425BA9D64003BFB2A /* TimeLineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineModel.swift; sourceTree = "<group>"; };
+		8C7345DE25BACEE5003BFB2A /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		97AAD0D0D78675C82A544CBD /* Pods-Asynchronous Practice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Asynchronous Practice.debug.xcconfig"; path = "Target Support Files/Pods-Asynchronous Practice/Pods-Asynchronous Practice.debug.xcconfig"; sourceTree = "<group>"; };
 		E363B39BC4484A5B26E999B0 /* Pods-Asynchronous PracticeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Asynchronous PracticeTests.release.xcconfig"; path = "Target Support Files/Pods-Asynchronous PracticeTests/Pods-Asynchronous PracticeTests.release.xcconfig"; sourceTree = "<group>"; };
 		E9DAE017C2B8E19ABAC798E9 /* Pods-Asynchronous PracticeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Asynchronous PracticeTests.debug.xcconfig"; path = "Target Support Files/Pods-Asynchronous PracticeTests/Pods-Asynchronous PracticeTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -145,9 +157,10 @@
 		8C7344F125B982B6003BFB2A /* Asynchronous Practice */ = {
 			isa = PBXGroup;
 			children = (
-				8C73452E25B98A7A003BFB2A /* View */,
 				8C73452F25B98A7A003BFB2A /* ViewController */,
 				8C73453125B98A7A003BFB2A /* ViewModel */,
+				8C7345C925BA9D11003BFB2A /* Model */,
+				8C73452E25B98A7A003BFB2A /* View */,
 				8C7344F225B982B6003BFB2A /* AppDelegate.swift */,
 				8C7344F425B982B6003BFB2A /* SceneDelegate.swift */,
 				8C7344FB25B982B9003BFB2A /* Assets.xcassets */,
@@ -180,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				8C73457625B9C31A003BFB2A /* CustomButton.swift */,
+				8C7345DE25BACEE5003BFB2A /* CustomTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -197,8 +211,17 @@
 			isa = PBXGroup;
 			children = (
 				8C73458425BA84B9003BFB2A /* InitialViewModel.swift */,
+				8C7345CA25BA9D4B003BFB2A /* TimeLineViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8C7345C925BA9D11003BFB2A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8C7345D425BA9D64003BFB2A /* TimeLineModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C94BB02B4CEF1F584849934E /* Frameworks */ = {
@@ -373,7 +396,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				$SRCROOT/$PROJECT_NAME/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -470,10 +493,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C73457725B9C31A003BFB2A /* CustomButton.swift in Sources */,
+				8C7345D525BA9D64003BFB2A /* TimeLineModel.swift in Sources */,
 				8C7345A625BA916D003BFB2A /* R.generated.swift in Sources */,
 				8C73454C25B98B61003BFB2A /* InitialViewController.swift in Sources */,
 				8C7344F325B982B6003BFB2A /* AppDelegate.swift in Sources */,
 				8C7344F525B982B6003BFB2A /* SceneDelegate.swift in Sources */,
+				8C7345DF25BACEE5003BFB2A /* CustomTableViewCell.swift in Sources */,
+				8C7345CB25BA9D4B003BFB2A /* TimeLineViewModel.swift in Sources */,
 				8C73458525BA84B9003BFB2A /* InitialViewModel.swift in Sources */,
 				8C73458C25BA8A54003BFB2A /* TimeLineViewController.swift in Sources */,
 			);
@@ -483,11 +509,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C7345E025BACEE5003BFB2A /* CustomTableViewCell.swift in Sources */,
 				8C73458625BA84B9003BFB2A /* InitialViewModel.swift in Sources */,
 				8C73450A25B982B9003BFB2A /* Asynchronous_PracticeTests.swift in Sources */,
 				8C73454D25B98B61003BFB2A /* InitialViewController.swift in Sources */,
 				8C73458D25BA8A54003BFB2A /* TimeLineViewController.swift in Sources */,
 				8C73457825B9C31A003BFB2A /* CustomButton.swift in Sources */,
+				8C7345CC25BA9D4B003BFB2A /* TimeLineViewModel.swift in Sources */,
+				8C7345D625BA9D64003BFB2A /* TimeLineModel.swift in Sources */,
 				8C7345A725BA916D003BFB2A /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,11 +525,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C7345E125BACEE5003BFB2A /* CustomTableViewCell.swift in Sources */,
 				8C73458725BA84B9003BFB2A /* InitialViewModel.swift in Sources */,
 				8C73451525B982B9003BFB2A /* Asynchronous_PracticeUITests.swift in Sources */,
 				8C73454E25B98B61003BFB2A /* InitialViewController.swift in Sources */,
 				8C73458E25BA8A54003BFB2A /* TimeLineViewController.swift in Sources */,
 				8C73457925B9C31A003BFB2A /* CustomButton.swift in Sources */,
+				8C7345CD25BA9D4B003BFB2A /* TimeLineViewModel.swift in Sources */,
+				8C7345D725BA9D64003BFB2A /* TimeLineModel.swift in Sources */,
 				8C7345A825BA916D003BFB2A /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
