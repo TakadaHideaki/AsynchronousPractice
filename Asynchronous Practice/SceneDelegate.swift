@@ -1,5 +1,7 @@
 import UIKit
 
+var statusBarHeight: CGFloat?
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -10,6 +12,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene as! UIWindowScene)
         window?.rootViewController = UINavigationController(rootViewController: InitialViewController())
         window?.makeKeyAndVisible()
+        
+        statusBarHeight = window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
