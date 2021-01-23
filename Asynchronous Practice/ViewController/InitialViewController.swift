@@ -49,6 +49,4 @@ class InitialViewController: UIViewController {
             
             }
     
-
- 
 }
