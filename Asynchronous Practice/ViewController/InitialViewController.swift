@@ -16,8 +16,11 @@ class InitialViewController: UIViewController {
                            y: viewHeight * 0.4,
                            width: viewWidth * 0.4,
                            height: viewHeight * 0.2)
+        self.view.addSubview(btn)
         return btn
     }()
+    
+  
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +28,9 @@ class InitialViewController: UIViewController {
         view.backgroundColor = .red
         self.navigationItem.title = "Top Page"
         bind()
-        self.view.addSubview(serchBtn)
     }
+    
+ 
     
     func bind() {
         let input = InitialViewModel.Input(
@@ -45,6 +49,4 @@ class InitialViewController: UIViewController {
             
             }
     
-
- 
 }
