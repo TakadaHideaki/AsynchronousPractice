@@ -8,18 +8,19 @@ class TimeLineViewController: UIViewController, UINavigationControllerDelegate, 
     private let viewModel = TimeLineViewModel()
     private let disposeBag = DisposeBag()
     
-    private lazy var dataSource = RxTableViewSectionedReloadDataSource<TimeLineModel> (
+    private lazy var dataSource = RxTableViewSectionedReloadDataSource<[TimeLineModel]> (
         configureCell: { _, tableView, indexPath, item in
             switch indexPath.section {
             case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "data", for: indexPath)
-            cell.backgroundColor = .white
-            item.forEach {
-                cell.textLabel?.text = "ID: \($0)さんからの投稿"
-                print($0)
-            }
+//            item.forEach {
+//                cell.textLabel?.text = "ID: \($0)さんからの投稿"
+//                print($0)
+//            }
+                print("a")
+                print(item)
             return cell
-            
+
             default: break
             }
             return UITableViewCell()
@@ -41,19 +42,17 @@ class TimeLineViewController: UIViewController, UINavigationControllerDelegate, 
     
     private lazy var serchTextField: UITextField = {
         let textField = CustomTextField()
-        textField.backgroundColor = .black
-        textField.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(textField)
+//        tableView.delegate = self
+//        tableView.rx.setDelegate(self).disposed(by: disposeBag)
+
         return textField
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        serchTextField.backgroundColor = .black
         bind()
         layout()
-
     }
     
     func layout() {
@@ -66,24 +65,35 @@ class TimeLineViewController: UIViewController, UINavigationControllerDelegate, 
         serchTextField.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
         
         //tableViewLaout
-        tableView.topAnchor.constraint(equalTo: (self.serchTextField.bottomAnchor), constant: 10).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-        tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
-        tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
-
-
-
-        
+//        tableView.topAnchor.constraint(equalTo: (self.serchTextField.bottomAnchor), constant: 10).isActive = true
+//        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+//        tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+//        tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
     }
     
     
     private func bind() {
+        
+        let input = TimeLineViewModel.Input(
+            sertchWord: self.serchTextField.rx.text.orEmpty
+                .filter{$0.count >= 1}
+                .debounce(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
+                .asObservable()
+            )
+        
    
-        let output = viewModel.transform()
+        let output = viewModel.transform(input: input)
         
         output.cellObj
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+        
+//        output.cellData
+//            .subscribe(onNext: { _ in
+////                print(a)
+//            })
+//            .disposed(by: disposeBag)
+
     }
     
 
