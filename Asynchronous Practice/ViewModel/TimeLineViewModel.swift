@@ -25,29 +25,25 @@ extension TimeLineViewModel {
     
     func transform(input: Input) -> Output {
         
-        var aa: [GitHubAPIModel]?
+        var GitHubAPIModel: [GitHubAPIModel]?
         
-        let gitHubData = input.sertchWord
+        let _ = input.sertchWord
+            //GItHubAPIからデータを取得
             .flatMap{ return model.searchEvents(query: $0) }
-            .subscribe(onNext: { aa = $0  })
+            //取得したデータをRxDataSourcesで表示する為、取得データを
+            //TimeLineModelにデータを適合させるために一旦 var GitHubAPIModelに格納
+            .subscribe(onNext: { GitHubAPIModel = $0  })
             .disposed(by: disposeBag)
       
-        
-//        let cellObj = BehaviorRelay<[TimeLineModel]>(
-//            value: [TimeLineModel(items: [])]
-//        )
-        
-        
+        //取得したデータを BehaviorRelay<[TimeLineModel]>に変換
         var cellObj: BehaviorRelay<[TimeLineModel]> {
             return
                 BehaviorRelay<[TimeLineModel]>(value:
-                                                [TimeLineModel(items: [aa!])])
+                                                [TimeLineModel(items: [GitHubAPIModel!])])
         }
         
         
         
 
         return Output(cellObj: cellObj.asObservable())
-//                     cellData: gitHubData)
-    }
-}
+//  ?                   cellData: gitHubData)
