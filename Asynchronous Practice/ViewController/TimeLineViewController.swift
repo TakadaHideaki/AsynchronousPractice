@@ -7,24 +7,25 @@ class TimeLineViewController: UIViewController, UINavigationControllerDelegate, 
     
     private let viewModel = TimeLineViewModel()
     private let disposeBag = DisposeBag()
-    
-    private lazy var dataSource = RxTableViewSectionedReloadDataSource<[TimeLineModel]> (
-        configureCell: { _, tableView, indexPath, item in
-            switch indexPath.section {
-            case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "data", for: indexPath)
-//            item.forEach {
-//                cell.textLabel?.text = "ID: \($0)さんからの投稿"
-//                print($0)
-//            }
-                print("a")
-                print(item)
-            return cell
 
-            default: break
+
+    
+    private lazy var dataSource = RxTableViewSectionedReloadDataSource<TimeLineModel> (
+        configureCell: { [weak self]  _, tableView, indexPath, item in
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            
+
+            item.items.forEach{
+                cell.textLabel?.text = $0.name
+                cell.detailTextLabel?.text = $0.urlStr
             }
-            return UITableViewCell()
-    })
+
+            
+//
+//            cell.textLabel?.text = item.items[indexPath.row].name
+//            cell.detailTextLabel?.text = item.items[indexPath.row].urlStr
+            return cell
+        })
     
     lazy var tableView = { () -> UITableView in
         let tableView = UITableView()
@@ -32,9 +33,8 @@ class TimeLineViewController: UIViewController, UINavigationControllerDelegate, 
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.backgroundColor = .red
-        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "data")
+        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "cell")
         self.view.addSubview(tableView)
-        serchTextField.delegate = self
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
         return tableView
     }()
@@ -43,16 +43,15 @@ class TimeLineViewController: UIViewController, UINavigationControllerDelegate, 
     private lazy var serchTextField: UITextField = {
         let textField = CustomTextField()
         self.view.addSubview(textField)
-//        tableView.delegate = self
-//        tableView.rx.setDelegate(self).disposed(by: disposeBag)
-
         return textField
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        bind()
+//        tableView.delegate = self
+//        tableView.dataSource = self
         layout()
+        bind()
     }
     
     func layout() {
@@ -76,7 +75,7 @@ class TimeLineViewController: UIViewController, UINavigationControllerDelegate, 
         
         let input = TimeLineViewModel.Input(
             sertchWord: self.serchTextField.rx.text.orEmpty
-                .filter{$0.count >= 1}
+                .filter{ $0.count >= 1 }
                 .debounce(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
                 .asObservable()
             )
@@ -85,34 +84,54 @@ class TimeLineViewController: UIViewController, UINavigationControllerDelegate, 
         let output = viewModel.transform(input: input)
         
         output.cellObj
+//            .subscribe(onNext: {
+//                $0.forEach{
+//                    $0.items.forEach{
+//                        $0.items.forEach{
+//                            self.items.append($0.name)
+//                            self.tableView.reloadData()
+//                        }
+//                    }
+//                }
+//            })
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
-        
-//        output.cellData
-//            .subscribe(onNext: { _ in
-////                print(a)
-//            })
-//            .disposed(by: disposeBag)
-
     }
+    
+    
+    
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return items.count
+//    }
+//
+//    internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+//        cell.textLabel?.text = items[indexPath.row]
+//         return cell
+//     }
     
 
 
 }
 
-extension TimeLineViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 100
-        }
 
-    func  tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel()
-        label.backgroundColor = UIColor.clear
-        label.textColor = UIColor.gray
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.text = "aa"//dataSource[section].sectionTitle
-        return label
-    }
-}
+    
+
+
+
+//extension TimeLineViewController: UITableViewDelegate {
+//
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//            return 100
+//        }
+//
+//    func  tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let label = UILabel()
+//        label.backgroundColor = UIColor.clear
+//        label.textColor = UIColor.gray
+//        label.textAlignment = .center
+//        label.font = UIFont.boldSystemFont(ofSize: 20)
+//        label.text = "aa"//dataSource[section].sectionTitle
+//        return label
+//    }
+//}
