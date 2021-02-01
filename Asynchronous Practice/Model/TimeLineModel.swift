@@ -6,7 +6,9 @@ struct TimeLineModel {
 }
 
 extension TimeLineModel: SectionModelType {
+//    typealias Item = GitHubAPIModel
     typealias Item = GitHubAPIModel
+
 
 
     init(original: TimeLineModel, items: [Item] ) {

@@ -7,21 +7,17 @@ class TimeLineViewController: UIViewController, UINavigationControllerDelegate, 
     
     private let viewModel = TimeLineViewModel()
     private let disposeBag = DisposeBag()
-
-
     
     private lazy var dataSource = RxTableViewSectionedReloadDataSource<TimeLineModel> (
         configureCell: { [weak self]  _, tableView, indexPath, item in
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)//IndexPath(row: indexPath.row, section: 0))
             
-
-            item.items.forEach{
-                cell.textLabel?.text = $0.name
-                cell.detailTextLabel?.text = $0.urlStr
-            }
-
             
-//
+            
+//            item.items.forEach {
+//                cell.textLabel?.text = $0.name
+//                cell.detailTextLabel?.text = $0.urlStr
+//            }
 //            cell.textLabel?.text = item.items[indexPath.row].name
 //            cell.detailTextLabel?.text = item.items[indexPath.row].urlStr
             return cell
@@ -48,12 +44,10 @@ class TimeLineViewController: UIViewController, UINavigationControllerDelegate, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        tableView.delegate = self
-//        tableView.dataSource = self
         layout()
         bind()
     }
-    
+        
     func layout() {
         //textFieldLayout
         let navBarHeight = self.navigationController?.navigationBar.frame.size.height ?? 44
@@ -113,25 +107,3 @@ class TimeLineViewController: UIViewController, UINavigationControllerDelegate, 
 
 
 }
-
-
-    
-
-
-
-//extension TimeLineViewController: UITableViewDelegate {
-//
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//            return 100
-//        }
-//
-//    func  tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let label = UILabel()
-//        label.backgroundColor = UIColor.clear
-//        label.textColor = UIColor.gray
-//        label.textAlignment = .center
-//        label.font = UIFont.boldSystemFont(ofSize: 20)
-//        label.text = "aa"//dataSource[section].sectionTitle
-//        return label
-//    }
-//}
