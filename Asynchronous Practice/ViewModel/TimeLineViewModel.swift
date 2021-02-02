@@ -25,13 +25,8 @@ extension TimeLineViewModel {
             .flatMap{ return model.searchEvents(query: $0) } //GItHubAPIからデータを取得
             .subscribe(onNext: {
                 print("データ: 取得数", $0.items.count)
-                
-                var items:[Item] = []
-                for item in $0.items {
-                    items.append(Item(name: item.name, fullName: item.fullName))
-                }
-                
-                cellObj.accept([TimeLineModel(items: items)])
+                cellObj.accept([TimeLineModel(items: $0.items )])
+
             })
             .disposed(by: disposeBag)
         
