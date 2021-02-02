@@ -15,6 +15,7 @@ pod 'RxDataSources'
 pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'XCGLogger', '~> 7.0.0'
+pod 'SwiftLint'
 
 
 

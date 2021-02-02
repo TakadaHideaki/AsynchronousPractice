@@ -6,7 +6,10 @@ struct TimeLineModel {
 }
 
 extension TimeLineModel: SectionModelType {
-    typealias Item = [GitHubAPIModel]
+//    typealias Item = GitHubAPIModel
+    typealias Item = GitHubAPIModel
+
+
 
     init(original: TimeLineModel, items: [Item] ) {
         self = original
@@ -18,7 +21,6 @@ extension TimeLineModel: SectionModelType {
 struct GitHubAPIModel: Codable {
     var items: [Item]
 }
-
 
 struct Item: Codable {
     let name: String

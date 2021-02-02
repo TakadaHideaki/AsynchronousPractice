@@ -154,11 +154,11 @@
 		8C7344F125B982B6003BFB2A /* Asynchronous Practice */ = {
 			isa = PBXGroup;
 			children = (
-				8C73472625BD94E9003BFB2A /* Util */,
 				8C73452F25B98A7A003BFB2A /* ViewController */,
 				8C73453125B98A7A003BFB2A /* ViewModel */,
 				8C7345C925BA9D11003BFB2A /* Model */,
 				8C73452E25B98A7A003BFB2A /* View */,
+				8C73472625BD94E9003BFB2A /* Util */,
 				8C7344F225B982B6003BFB2A /* AppDelegate.swift */,
 				8C7344F425B982B6003BFB2A /* SceneDelegate.swift */,
 				8C7344FB25B982B9003BFB2A /* Assets.xcassets */,
@@ -404,7 +404,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/$PROJECT_NAME/R.generated.swift\"\n";
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/$PROJECT_NAME/R.generated.swift\"\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		BEEC414A0FBAC24FC831E70C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
