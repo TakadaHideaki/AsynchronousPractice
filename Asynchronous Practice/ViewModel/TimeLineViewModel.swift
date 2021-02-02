@@ -24,7 +24,14 @@ extension TimeLineViewModel {
         input.sertchWord
             .flatMap{ return model.searchEvents(query: $0) } //GItHubAPIからデータを取得
             .subscribe(onNext: {
-                cellObj.accept([TimeLineModel(items: $0 )])
+                print("データ: 取得数", $0.items.count)
+                
+                var items:[Item] = []
+                for item in $0.items {
+                    items.append(Item(name: item.name, fullName: item.fullName))
+                }
+                
+                cellObj.accept([TimeLineModel(items: items)])
             })
             .disposed(by: disposeBag)
         
