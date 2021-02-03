@@ -12,7 +12,7 @@ class TimeLineViewController: UIViewController, UINavigationControllerDelegate, 
         configureCell: { [weak self]  _, tableView, indexPath, item in
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)//IndexPath(row: indexPath.row, section: 0))
             
-            
+            print("データ:", indexPath.row)
             
 //            item.items.forEach {
 //                cell.textLabel?.text = $0.name
