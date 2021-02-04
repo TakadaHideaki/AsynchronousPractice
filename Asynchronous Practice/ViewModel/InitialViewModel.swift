@@ -12,12 +12,9 @@ extension InitialViewModel {
     
     struct Output {
         let serchBtnTappedEvent: Observable<Void>
-
-        
     }
     
     func transform(input: Input) -> Output {
-        
         return Output (serchBtnTappedEvent: input.serchBtnTapped)
     }
 }

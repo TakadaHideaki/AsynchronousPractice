@@ -1,10 +1,3 @@
-//
-//  CustomButton.swift
-//  Asynchronous Practice
-//
-//  Created by takadahideaki007 on 2021/01/21.
-//
-
 import UIKit
 
 class CustomButton: UIButton {

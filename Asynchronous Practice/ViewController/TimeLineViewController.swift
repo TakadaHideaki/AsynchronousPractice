@@ -10,16 +10,9 @@ class TimeLineViewController: UIViewController, UINavigationControllerDelegate, 
     
     private lazy var dataSource = RxTableViewSectionedReloadDataSource<TimeLineModel> (
         configureCell: { [weak self]  _, tableView, indexPath, item in
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)//IndexPath(row: indexPath.row, section: 0))
-            
-            print("データ:", indexPath.row)
-            
-//            item.items.forEach {
-//                cell.textLabel?.text = $0.name
-//                cell.detailTextLabel?.text = $0.urlStr
-//            }
-//            cell.textLabel?.text = item.items[indexPath.row].name
-//            cell.detailTextLabel?.text = item.items[indexPath.row].urlStr
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            cell.textLabel?.text = item.name
+            cell.detailTextLabel?.text = item.urlStr
             return cell
         })
     
@@ -34,7 +27,6 @@ class TimeLineViewController: UIViewController, UINavigationControllerDelegate, 
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
         return tableView
     }()
-    
     
     private lazy var serchTextField: UITextField = {
         let textField = CustomTextField()
@@ -56,54 +48,21 @@ class TimeLineViewController: UIViewController, UINavigationControllerDelegate, 
         serchTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: height + 20).isActive = true
         serchTextField.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.5).isActive = true
         serchTextField.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
-        
-        //tableViewLaout
-//        tableView.topAnchor.constraint(equalTo: (self.serchTextField.bottomAnchor), constant: 10).isActive = true
-//        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-//        tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
-//        tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
     }
     
     
     private func bind() {
-        
         let input = TimeLineViewModel.Input(
             sertchWord: self.serchTextField.rx.text.orEmpty
                 .filter{ $0.count >= 1 }
-                .debounce(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
+                .debounce(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)//遅延処理
                 .asObservable()
             )
         
-   
         let output = viewModel.transform(input: input)
-        
+        //APIから取得したデータRxDataSourcesに流す
         output.cellObj
-//            .subscribe(onNext: {
-//                $0.forEach{
-//                    $0.items.forEach{
-//                        $0.items.forEach{
-//                            self.items.append($0.name)
-//                            self.tableView.reloadData()
-//                        }
-//                    }
-//                }
-//            })
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
     }
-    
-    
-    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return items.count
-//    }
-//
-//    internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//        cell.textLabel?.text = items[indexPath.row]
-//         return cell
-//     }
-    
-
-
 }
