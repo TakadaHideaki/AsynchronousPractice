@@ -3,7 +3,7 @@
 - Alamofire
 - MVVM
 - RxSwift
-- RxDataSources
+- RxDataSources  
 エヴァ上映が近かったのでカラーがエヴァ風です
 
 ![result](https://user-images.githubusercontent.com/56917581/107140091-21856080-6963-11eb-891e-08423e35e92f.gif)
